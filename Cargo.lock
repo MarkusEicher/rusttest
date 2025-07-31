@@ -3,6 +3,10 @@
 version = 4
 
 [[package]]
+name = "exercises"
+version = "0.1.0"
+
+[[package]]
 name = "testapp"
 version = "0.1.0"
 
