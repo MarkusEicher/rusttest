@@ -4,4 +4,4 @@ members = [
     "testlib", 
     "testapp",
     "exercises"
-]
+, "hello_world"]
