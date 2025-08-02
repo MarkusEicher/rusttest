@@ -3,5 +3,7 @@ resolver = "3"
 members = [
     "testlib", 
     "testapp",
-    "exercises"
-, "hello_world"]
+    "exercises",
+     "hello_world"
+]
+default-members = ["testapp"]
