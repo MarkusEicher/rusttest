@@ -65,31 +65,36 @@
 // }
 
 
+// struct ControlPoint {
+//     x: f64,
+//     y: f64,
+//     enabled: bool,
 
-struct ControlPoint {
-    x: f64,
-    y: f64,
-    enabled: bool,
+// }
+#[derive(Debug)]
+enum IpAddr {
+    // IpV4,
+    IpV6,
 }
-// #[derive(Debug)]
 enum IpAddressType {
     Ipv4 (u8, u8, u8, u8),
     Ipv6 (u16, u16, u16, u16, u16, u16, u16, u16),
 }
 
 fn main () {
-    let cp = ControlPoint {
-        x: 10.5,
-        y: 12.8,
-        enabled: true,
-    };
-    println!("{}, {}, {}", cp.x, cp.y, cp.enabled);
+    // let cp = ControlPoint {
+    //     x: 10.5,
+    //     y: 12.8,
+    //     enabled: true,
+    // };
+    // println!("{}, {}, {}", cp.x, cp.y, cp.enabled);
 
-    // let ip_type = IpAddressType::Ipv4;
-    // print!("The ip address typ is: {:?}.", ip_type);
+    let ip_type = IpAddr::IpV6;
+    println!("The ip address type is: {:?}", ip_type);
 
     // let _ipv4_home = IpAddressType::Ipv4(127, 0, 0, 1);
     // let _ipv6_home = IpAddressType::Ipv6(0, 0, 0, 0, 0, 0, 0, 1);
+
     let home = IpAddressType::Ipv4(127, 0, 0, 1);
     let loopback = IpAddressType::Ipv6(0, 0, 0, 0, 0, 0, 0, 1);
 
@@ -109,5 +114,31 @@ fn main () {
         IpAddressType::Ipv4(..) => {
             println!("IPv4 address");
         }
+    }
+
+    show_first_two_ip_octets_of_ipv4_addresstype(IpAddressType::Ipv4(127,0,0,1));
+
+    check_exactly_if_home_or_not(IpAddressType::Ipv6(0,0,0,0,0,0,0,1));
+}
+
+fn show_first_two_ip_octets_of_ipv4_addresstype(ip: IpAddressType) {
+        if let IpAddressType::Ipv4(a,b,_ ,_) = ip {
+            println!("First two octets are {} and {}", a, b);
+        }else {
+            println!("An Ipv6 address was given...");
+        }
+}
+
+fn check_exactly_if_home_or_not(ip: IpAddressType) {
+    match ip {
+        IpAddressType::Ipv4(127, 0, 0, 1) => {
+        println!("You are home!");
+        },
+        IpAddressType::Ipv6(0 ,0 ,0 ,0, 0, 0, 0, 1) => {
+            println!("You are home in ipv6!");
+        },
+        _ => {
+            println!("Your are not at home!");
+        },
     }
 }
