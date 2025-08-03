@@ -71,74 +71,109 @@
 //     enabled: bool,
 
 // }
-#[derive(Debug)]
-enum IpAddr {
-    // IpV4,
-    IpV6,
-}
-enum IpAddressType {
-    Ipv4 (u8, u8, u8, u8),
-    Ipv6 (u16, u16, u16, u16, u16, u16, u16, u16),
-}
+// #[derive(Debug)]
+// enum IpAddr {
+//     // IpV4,
+//     IpV6,
+// }
+// enum IpAddressType {
+//     Ipv4 (u8, u8, u8, u8),
+//     Ipv6 (u16, u16, u16, u16, u16, u16, u16, u16),
+// }
 
-fn main () {
-    // let cp = ControlPoint {
-    //     x: 10.5,
-    //     y: 12.8,
-    //     enabled: true,
-    // };
-    // println!("{}, {}, {}", cp.x, cp.y, cp.enabled);
+// fn main () {
+//     // let cp = ControlPoint {
+//     //     x: 10.5,
+//     //     y: 12.8,
+//     //     enabled: true,
+//     // };
+//     // println!("{}, {}, {}", cp.x, cp.y, cp.enabled);
 
-    let ip_type = IpAddr::IpV6;
-    println!("The ip address type is: {:?}", ip_type);
+//     let ip_type = IpAddr::IpV6;
+//     println!("The ip address type is: {:?}", ip_type);
 
-    // let _ipv4_home = IpAddressType::Ipv4(127, 0, 0, 1);
-    // let _ipv6_home = IpAddressType::Ipv6(0, 0, 0, 0, 0, 0, 0, 1);
+//     // let _ipv4_home = IpAddressType::Ipv4(127, 0, 0, 1);
+//     // let _ipv6_home = IpAddressType::Ipv6(0, 0, 0, 0, 0, 0, 0, 1);
 
-    let home = IpAddressType::Ipv4(127, 0, 0, 1);
-    let loopback = IpAddressType::Ipv6(0, 0, 0, 0, 0, 0, 0, 1);
+//     let home = IpAddressType::Ipv4(127, 0, 0, 1);
+//     let loopback = IpAddressType::Ipv6(0, 0, 0, 0, 0, 0, 0, 1);
 
-    match home {
-        IpAddressType::Ipv4(a, b, c, d) => {
-            println!("IPv4: {}.{}.{}.{}", a, b, c, d);
-        }
-        IpAddressType::Ipv6(..) => {
-            println!("IPv6 address");
-        }
+//     match home {
+//         IpAddressType::Ipv4(a, b, c, d) => {
+//             println!("IPv4: {}.{}.{}.{}", a, b, c, d);
+//         }
+//         IpAddressType::Ipv6(..) => {
+//             println!("IPv6 address");
+//         }
+//     }
+
+//     match loopback {
+//         IpAddressType::Ipv6(a, b, c, d, e, f, g, h) => {
+//             println!("IPv6: {:x}:{:x}:{:x}:{:x}:{:x}:{:x}:{:x}:{:x}", a, b, c, d, e, f, g, h);
+//         }
+//         IpAddressType::Ipv4(..) => {
+//             println!("IPv4 address");
+//         }
+//     }
+
+//     show_first_two_ip_octets_of_ipv4_addresstype(IpAddressType::Ipv4(127,0,0,1));
+
+//     check_exactly_if_home_or_not(IpAddressType::Ipv6(0,0,0,0,0,0,0,1));
+// }
+
+// fn show_first_two_ip_octets_of_ipv4_addresstype(ip: IpAddressType) {
+//         if let IpAddressType::Ipv4(a,b,_ ,_) = ip {
+//             println!("First two octets are {} and {}", a, b);
+//         }else {
+//             println!("An Ipv6 address was given...");
+//         }
+// }
+
+// fn check_exactly_if_home_or_not(ip: IpAddressType) {
+//     match ip {
+//         IpAddressType::Ipv4(127, 0, 0, 1) => {
+//         println!("You are home!");
+//         },
+//         IpAddressType::Ipv6(0 ,0 ,0 ,0, 0, 0, 0, 1) => {
+//             println!("You are home in ipv6!");
+//         },
+//         _ => {
+//             println!("Your are not at home!");
+//         },
+//     }
+// }
+
+
+
+// struct PointFloat(f64, f64);
+// struct PointInt(u64, u64);
+
+// struct Point<T>(T, T);
+
+// enum Option<T> {
+//     Some(T),
+//     None,
+// }
+
+// 
+
+use std::i32;
+
+struct UpTo4 {}
+
+impl UpTo4 {
+    fn add(&self, num: i32) {}
+    fn remove(&self) -> i32 {
+        1
     }
-
-    match loopback {
-        IpAddressType::Ipv6(a, b, c, d, e, f, g, h) => {
-            println!("IPv6: {:x}:{:x}:{:x}:{:x}:{:x}:{:x}:{:x}:{:x}", a, b, c, d, e, f, g, h);
-        }
-        IpAddressType::Ipv4(..) => {
-            println!("IPv4 address");
-        }
-    }
-
-    show_first_two_ip_octets_of_ipv4_addresstype(IpAddressType::Ipv4(127,0,0,1));
-
-    check_exactly_if_home_or_not(IpAddressType::Ipv6(0,0,0,0,0,0,0,1));
 }
 
-fn show_first_two_ip_octets_of_ipv4_addresstype(ip: IpAddressType) {
-        if let IpAddressType::Ipv4(a,b,_ ,_) = ip {
-            println!("First two octets are {} and {}", a, b);
-        }else {
-            println!("An Ipv6 address was given...");
-        }
-}
+fn main() {
+    let ut4 = UpTo4 {};
 
-fn check_exactly_if_home_or_not(ip: IpAddressType) {
-    match ip {
-        IpAddressType::Ipv4(127, 0, 0, 1) => {
-        println!("You are home!");
-        },
-        IpAddressType::Ipv6(0 ,0 ,0 ,0, 0, 0, 0, 1) => {
-            println!("You are home in ipv6!");
-        },
-        _ => {
-            println!("Your are not at home!");
-        },
-    }
+    ut4.add(3);
+    ut4.add(2);
+
+    let x = ut4.remove();
+    assert_eq!(x, 2);
 }
