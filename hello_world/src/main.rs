@@ -156,24 +156,60 @@
 // }
 
 // 
-
-use std::i32;
-
-struct UpTo4 {}
+#[derive(Debug)]
+struct UpTo4 {
+    how_many: usize,
+    arr:[i32; 4],
+}
 
 impl UpTo4 {
-    fn add(&self, num: i32) {}
-    fn remove(&self) -> i32 {
-        1
+    fn new() -> Self {
+        Self {
+            how_many: 0,
+            arr: [0, 0, 0, 0] }
+    }
+
+    fn add(&mut self, num: i32) {
+        if self.how_many > 3 {
+            return
+        } else {
+            self.arr[self.how_many] = num;
+            self.how_many += 1;
+            // dbg!(&self);
+        }
+    }
+
+    fn show_last_entered_value(&mut self) -> Option<i32> {
+        if self.how_many == 0 {
+            None
+        } else {
+            self.how_many -= 1;
+            Some(self.arr[self.how_many])
+        }
+        
     }
 }
 
 fn main() {
-    let ut4 = UpTo4 {};
+    // println!("main function");
+    let mut ut4 = UpTo4::new();
 
     ut4.add(3);
-    ut4.add(2);
+    ut4.add(10);
+    ut4.add(22);
 
-    let x = ut4.remove();
-    assert_eq!(x, 2);
+    let x: Option<i32> = ut4.show_last_entered_value();
+    // assert_eq!(x, Some(2));
+
+    // let x: Option<i32> = ut4.remove();
+    // assert_eq!(x, Some(3));
+
+    // let x: Option<i32> = ut4.remove();
+    // assert_eq!(x, None);
+    match x {
+        Some(n) => println!("n is {}", n),
+        None => println!("x was None"),
+    }
+    
+    println!("Passed");
 }
